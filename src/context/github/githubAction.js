@@ -7,6 +7,8 @@ const github = axios.create({
   headers: { Authorization: `token ${GITHUB_TOKEN}` },
 });
 
+console.log(github);
+
 // get users
 export const searchUsers = async (text) => {
   const params = new URLSearchParams({
@@ -14,7 +16,11 @@ export const searchUsers = async (text) => {
   });
 
   // axios call
-  const response = await github.get(`/search/users?${params}`);
+  const response = await github.get(
+    `https://api.github.com/search/users?q=brad`
+  );
+
+  console.log(response);
   return response.data.items;
 };
 
